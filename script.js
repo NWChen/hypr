@@ -1,16 +1,15 @@
 function getAllUrls() {
-	var tab_list = ["asdfsdafdsa"];
-	chrome.tabs.query({}, function(tabs) {     
-	  tabs.forEach(function(tab){
-  		tab_list.push(tab.url);
-	  });
+	var tab_list = ["asdf"];
+	chrome.tabs.query({}, function(tabs) {
+		tabs.forEach(function(tab){
+	  	tab_list.push(tab.url);
+		});
 	});
-	alert(tab_list);
 	return tab_list;
 };
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-		getAllUrls();
+	if(tab) console.log(getAllUrls());
 });		
 
 /*
