@@ -1,25 +1,19 @@
-//doesnt do anything
-function getAllTabsWithProperty(key) {
-	var tab_list = [];
-	chrome.tabs.query({}, function(tabs) {
-		tabs.forEach(function(tab){
-	  	tab_list.push(tab[key]);
-		});
-	});
-	return tab_list;
-};
+function realism(){
+//chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+	//if(tab) {
 
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-	if(tab) {
+		//get all tabs
 		chrome.tabs.query({}, function(tabs) {
 			tabs.forEach(function(tab){
 		  	chrome.tabs.update(tab.id, {selected:true});
+
+		  	//get all tab DOMs
 		  	chrome.tabs.executeScript({
-		  		code: "document.documentElement.innerHTML"
-		  	}, function(html) {
-		  		console.log(html);
+		  		code: "document.getElementsByTagName('a')[0].click()"
+		  	}, function(id) {
+		  		console.log(id);
 		  	});
 			});
 		});
 	}
-});		
+//});		
